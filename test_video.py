@@ -48,7 +48,7 @@ for i in tqdm(range(start_from, dataset.clip_length)):
     cur_frame = model.inference(label, inst, torch.unsqueeze(prev_frame, dim=0))
     prev_frame = cur_frame.data[0]
     
-    imsave('./datasets/cardio_dance_test/test_sync/{:05d}.png'.format(i), util.tensor2im(prev_frame))
+    imsave('./datasets/test_target/test_sync/{:05d}.png'.format(i), util.tensor2im(prev_frame))
     generated.append(util.tensor2im(prev_frame))
 
 result_dir = os.path.join(opt.results_dir, opt.name, opt.which_epoch)

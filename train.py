@@ -71,18 +71,18 @@ for epoch in range(start_epoch, opt.niter + opt.niter_decay + 1):
             errors = {k: v.data.item() if not isinstance(v, int) else v for k, v in loss_dict.items()}
             t = (time.time() - iter_start_time) / opt.batchSize
             visualizer.print_current_errors(epoch, epoch_iter, errors, t)
-            visualizer.plot_current_errors(errors, total_steps)
+            #visualizer.plot_current_errors(errors, total_steps)
 
         ### display output images
-        if save_fake:
-            label = torch.squeeze(data['label'])
-            image = torch.squeeze(data['image'])
-            label = torch.cat((label[0], label[1]), dim=2)
-            image = torch.cat((image[0], image[1]), dim=2)
-            visuals = OrderedDict([('input_label', util.tensor2label(label, opt.label_nc)),
-                                   ('synthesized_image', util.tensor2im(generated)),
-                                   ('real_image', util.tensor2im(image))])
-            visualizer.display_current_results(visuals, epoch, total_steps)
+#         if save_fake:
+#             label = torch.squeeze(data['label'])
+#             image = torch.squeeze(data['image'])
+#             label = torch.cat((label[0], label[1]), dim=2)
+#             image = torch.cat((image[0], image[1]), dim=2)
+#             visuals = OrderedDict([('input_label', util.tensor2label(label, opt.label_nc)),
+#                                    ('synthesized_image', util.tensor2im(generated)),
+#                                    ('real_image', util.tensor2im(image))])
+#             visualizer.display_current_results(visuals, epoch, total_steps)
 
         ### save latest model
         if total_steps % opt.save_latest_freq == save_delta:

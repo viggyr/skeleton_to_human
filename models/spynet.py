@@ -2,7 +2,7 @@ import getopt
 import math
 import sys
 import torch
-import torch.utils.serialization
+import torchfile
 from torch.nn.functional import upsample
 
 arguments_strModel = 'sintel-final'
@@ -67,8 +67,8 @@ class SpyNetwork(torch.nn.Module):
                 # end
 
                 for intConv in range(5):
-                    self.moduleBasic[intConv * 2].weight.data.copy_(torch.utils.serialization.load_lua('./models/spynet_models/modelL' + str(intLevel + 1) + '_' + arguments_strModel  + '-' + str(intConv + 1) + '-weight.t7'))
-                    self.moduleBasic[intConv * 2].bias.data.copy_(torch.utils.serialization.load_lua('./models/spynet_models/modelL' + str(intLevel + 1) + '_' + arguments_strModel  + '-' + str(intConv + 1) + '-bias.t7'))
+                    self.moduleBasic[intConv * 2].weight.data.copy_(torchfile.load('./models/spynet_models/modelL' + str(intLevel + 1) + '_' + arguments_strModel  + '-' + str(intConv + 1) + '-weight.t7'))
+                    self.moduleBasic[intConv * 2].bias.data.copy_(torchfile.load('./models/spynet_models/modelL' + str(intLevel + 1) + '_' + arguments_strModel  + '-' + str(intConv + 1) + '-bias.t7'))
                 # end
             # end
 
